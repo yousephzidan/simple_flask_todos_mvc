@@ -1,8 +1,9 @@
 from flask import Flask
 from routes.todo_bp import todo_bp
-
+from models.todos import db
 
 def create_app() -> Flask:
+    """Create Flask and configuring it"""
     app: Flask = Flask(__name__)
     
     # App configuration 
@@ -10,6 +11,11 @@ def create_app() -> Flask:
 
     # Registering Blueprints
     app.register_blueprint(todo_bp)
+
+    # Initializing our SQL database 
+    db.init_app(app)
+    with app.app_context():
+        db.create_all()
 
     return app
 

@@ -11,6 +11,6 @@ class Config(object):
     DEBUG: bool = True
 
 class Development(Config):
-    DB_SERVER: str
+    SQLALCHEMY_DATABASE_URI: str = "postgresql://ysf:123@127.0.0.1:5432/todos"
     SECERT_KEY = os.getenv("SECERT_KEY")
 
